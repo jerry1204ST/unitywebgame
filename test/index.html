@@ -114,28 +114,6 @@
         });
       };
       document.body.appendChild(script);
-      window.addEventListener('load', function () {
-    // 設定初始方向
-    setOrientation();
-
-    // 監聽方向變化事件
-    window.addEventListener('orientationchange', function () {
-        setOrientation();
-    });
-});
-
-function setOrientation() {
-    // 獲取當前方向
-    var orientation = window.orientation;
-
-    // 檢查方向，根據需要執行相應的操作
-    if (orientation === 90 || orientation === -90) {
-        // 手機處於橫向放置，執行相應的橫向操作
-        // 例如，可以切換到橫向UI佈局
-    } else {
-        // 手機處於其他方向，執行其他操作，或者提示用戶旋轉為橫向方向
-    }
-}
     </script>
   </body>
 </html>
