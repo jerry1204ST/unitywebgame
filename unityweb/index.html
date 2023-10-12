@@ -51,6 +51,28 @@
         // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
         // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
       });
+
+      // 检查并执行设备方向变化时的操作
+    function checkOrientation() {
+      if (window.orientation === 90||window.orientation === -90) {
+    console.log('设备处于横向模式。');
+    // 在此处执行你的操作
+        canvas.style.width = "95vw";
+        canvas.style.height = "95vh";
+        canvas.style.position = "fixed";
+      } else {
+    console.log('设备处于縱向模式。');
+    // 在此处执行你的操作
+          canvas.style.width = "100vw";
+          canvas.style.height = "60vw";
+          canvas.style.position = "fixed";
+      } 
+}
+//orientationchange
+// 添加设备方向变化的事件监听器
+window.addEventListener('deviceorientation', function() {
+  checkOrientation();
+});
     </script>
   </body>
 </html>
