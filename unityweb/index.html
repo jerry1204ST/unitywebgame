@@ -38,6 +38,8 @@
         canvas.style.position = "fixed";
         }
         document.body.style.textAlign = "left";
+        if (screen.orientation.unlock) {
+        screen.orientation.unlock();}
       }
 
       createUnityInstance(document.querySelector("#unity-canvas"), {
