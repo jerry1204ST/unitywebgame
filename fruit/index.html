@@ -4,6 +4,16 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | game</title>
+    <style>
+      body {
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       height: 100vh;
+       margin: 0;
+       padding: 0;
+     }
+   </style>
   </head>
   <body style="text-align: center; padding: 0; border: 0; margin: 0;">
     <canvas id="unity-canvas" width=960 height=600 style="width: 960px; height: 600px; background: #231F20"></canvas>
@@ -17,11 +27,19 @@
         document.getElementsByTagName('head')[0].appendChild(meta);
 
         var canvas = document.querySelector("#unity-canvas");
-        canvas.style.width = "100%";
-        canvas.style.height = "100%";
+        if(window.innerHeight > window.innerWidth)
+        {
+          canvas.style.width = "100vw";
+          canvas.style.height = "60vw";
+          canvas.style.position = "fixed";
+        }else{
+        canvas.style.width = "95vw";
+        canvas.style.height = "95vh";
         canvas.style.position = "fixed";
-
+        }
         document.body.style.textAlign = "left";
+        if (screen.orientation.unlock) {
+        screen.orientation.unlock();}
       }
 
       createUnityInstance(document.querySelector("#unity-canvas"), {
@@ -35,6 +53,26 @@
         // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
         // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
       });
+      // 检查并执行设备方向变化时的操作
+      function checkOrientation() {
+      if (window.orientation === 90||window.orientation === -90) {
+    console.log('设备处于横向模式。');
+    // 在此处执行你的操作
+        canvas.style.width = "95vw";
+        canvas.style.height = "95vh";
+        canvas.style.position = "fixed";
+      } else {
+    console.log('设备处于縱向模式。');
+    // 在此处执行你的操作
+          canvas.style.width = "100vw";
+          canvas.style.height = "60vw";
+          canvas.style.position = "fixed";
+      } 
+}
+// 添加设备方向变化的事件监听器
+window.addEventListener('deviceorientation', function() {
+  checkOrientation();
+});
     </script>
   </body>
 </html>
